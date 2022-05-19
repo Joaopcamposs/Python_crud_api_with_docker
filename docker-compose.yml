@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: mysql_database
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  api:
+    container_name: python_api
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
